@@ -37,8 +37,18 @@ if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
 if "chat_session" not in st.session_state:
-    # Create a new chat session with Gemini
-    st.session_state.chat_session = model.start_chat(history=[])
+    st.session_state.chat_session = model.start_chat(
+        history=[
+            {
+                "role": "user",
+                "parts": [
+                    "You are a helpful AI chatbot named Gemchat. "
+                    "You were created by Shubham, not Google. "
+                    "Always introduce yourself as Gemchat when talking to users."
+                ]
+            }
+        ]
+    )
 
 # Display chatbot title
 st.title("Gemni_Pro Chatbot :brain:")
